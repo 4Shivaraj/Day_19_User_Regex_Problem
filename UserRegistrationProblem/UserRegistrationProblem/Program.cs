@@ -13,7 +13,7 @@ namespace UserRegistrationProblem
             while (flag == "Y" || flag == "y")
             {
                 Console.WriteLine("Welcome To User Registration Problems");
-                Console.WriteLine("1.First Name\n2.Last Name\n3.Email");
+                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -39,6 +39,13 @@ namespace UserRegistrationProblem
                         bool valid3Test3 = validEmail.validateEmail("abc.@bl.co.in");
                         Console.WriteLine("{0} {1} {2}", (valid3Test1) ? "Valid" : "Invalid", (valid3Test2) ? "Valid" : "Invalid", (valid3Test3) ? "Valid" : "Invalid");
                         break;
+                    case 4:
+                        ValidMobileNumber validMobileNumber = new ValidMobileNumber();
+                        bool valid4Test1 = validMobileNumber.validateMobileNumber("91 9919819801");
+                        bool valid4Test2 = validMobileNumber.validateMobileNumber("12345678");
+                        bool valid4Test3 = validMobileNumber.validateMobileNumber("123abcd");
+                        Console.WriteLine("{0} {1} {2}", (valid4Test1) ? "Valid" : "Invalid", (valid4Test2) ? "Valid" : "Invalid", (valid4Test3) ? "Valid" : "Invalid");
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -52,16 +59,16 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-3
-/// As a User need to enter a valid email
-//- E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl& co) and 
-//2 optional (xyz & in) with precise @ and . positions
+//UC-4
+//As a User need tobfollow pre-defined
+//Mobile Format - E.g. 91 9919819801 - Country code follow by space and 10 digit number
 
 //Result
 //Welcome To User Registration Problems
 //1.First Name
 //2.Last Name
 //3.Email
+//4.Mobile Number
 //Enter Your Option
-//3
+//4
 //Valid Invalid Invalid
