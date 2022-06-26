@@ -14,7 +14,7 @@ namespace UserRegistrationProblem
             {
                 Console.WriteLine("Welcome To User Registration Problems");
                 Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1\n6.Password Rule2" +
-                    "\n7.Password Rule3\n8.Password Rule4");
+                    "\n7.Password Rule3\n8.Password Rule4\n9.Email Sample");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -75,6 +75,24 @@ namespace UserRegistrationProblem
                         bool valid8Test3 = passWordRule4.validatePassword4("123abcd");
                         Console.WriteLine("{0} {1} {2}", (valid8Test1) ? "Valid" : "Invalid", (valid8Test2) ? "Valid" : "Invalid", (valid8Test3) ? "Valid" : "Invalid");
                         break;
+                    case 9:
+                        EmailSample emailSample = new EmailSample();
+                        List<string> validtests = new List<string>() {"abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@abc.com", "abc-100@abc.net", "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com" ,
+                                                     "abc","abc@.com.my","abc123@gmail.a","abc123@.com","abc123@.com.com",".abc@abc.com","abc()*@gmail.com","abc@%*.com","abc..2002@gmail.com","abc.@gmail.com","abc@abc@gmail.com","abc@gmail.com.1a","abc@gmail.com.aa.au"};
+
+                        foreach (var test in validtests)
+                        {
+                            bool result = emailSample.validateEmail(test);
+                            if (result)
+                            {
+                                Console.WriteLine("\n{0} is a valid email address", test);
+                            }
+                            else
+                            {
+                                Console.WriteLine("\n{0} is an invalid email address", test);
+                            }
+                        }
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -88,10 +106,8 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-8
-//Rule4 
-//– Has exactly 1 Special Character
-//- NOTE – All rules must be passed
+//UC-9
+//Should clear all email samples provided separately
 
 //Result
 //Welcome To User Registration Problems
@@ -103,6 +119,50 @@ namespace UserRegistrationProblem
 //6.Password Rule2
 //7.Password Rule3
 //8.Password Rule4
+//9.Email Sample
 //Enter Your Option
-//8
-//Invalid Valid Invalid
+//9
+
+//abc@yahoo.com is a valid email address
+
+//abc-100@yahoo.com is a valid email address
+
+//abc.100@yahoo.com is a valid email address
+
+//abc111@abc.com is a valid email address
+
+//abc-100@abc.net is a valid email address
+
+//abc.100@abc.com.au is a valid email address
+
+//abc@1.com is a valid email address
+
+//abc@gmail.com.com is a valid email address
+
+//abc+100@gmail.com is a valid email address
+
+//abc is an invalid email address
+
+//abc@.com.my is an invalid email address
+
+//abc123@gmail.a is an invalid email address
+
+//abc123@.com is an invalid email address
+
+//abc123@.com.com is an invalid email address
+
+//.abc@abc.com is an invalid email address
+
+//abc()*@gmail.com is an invalid email address
+
+//abc@%*.com is an invalid email address
+
+//abc..2002@gmail.com is an invalid email address
+
+//abc.@gmail.com is an invalid email address
+
+//abc@abc@gmail.com is an invalid email address
+
+//abc@gmail.com.1a is an invalid email address
+
+//abc@gmail.com.aa.au is an invalid email address
