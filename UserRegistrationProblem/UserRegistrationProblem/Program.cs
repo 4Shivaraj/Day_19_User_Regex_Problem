@@ -13,7 +13,7 @@ namespace UserRegistrationProblem
             while (flag == "Y" || flag == "y")
             {
                 Console.WriteLine("Welcome To User Registration Problems");
-                Console.WriteLine("1.First Name\n2.Last Name");
+                Console.WriteLine("1.First Name\n2.Last Name\n3.Email");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -32,6 +32,13 @@ namespace UserRegistrationProblem
                         bool valid2Test3 = validLastName.validateLastName("gowda");
                         Console.WriteLine("{0} {1} {2}", (valid2Test1) ? "Valid" : "Invalid", (valid2Test2) ? "Valid" : "Invalid", (valid2Test3) ? "Valid" : "Invalid");
                         break;
+                    case 3:
+                        ValidEmail validEmail = new ValidEmail();
+                        bool valid3Test1 = validEmail.validateEmail("abc.xyz@bl.co.in");
+                        bool valid3Test2 = validEmail.validateEmail("abc.xyz@in");
+                        bool valid3Test3 = validEmail.validateEmail("abc.@bl.co.in");
+                        Console.WriteLine("{0} {1} {2}", (valid3Test1) ? "Valid" : "Invalid", (valid3Test2) ? "Valid" : "Invalid", (valid3Test3) ? "Valid" : "Invalid");
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -45,14 +52,16 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-2
-//As a User need to enter a valid Last Name 
-//- Last name starts with Cap and has minimum 3 characters
+//UC-3
+/// As a User need to enter a valid email
+//- E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl& co) and 
+//2 optional (xyz & in) with precise @ and . positions
 
 //Result
 //Welcome To User Registration Problems
 //1.First Name
 //2.Last Name
+//3.Email
 //Enter Your Option
-//2
+//3
 //Valid Invalid Invalid
