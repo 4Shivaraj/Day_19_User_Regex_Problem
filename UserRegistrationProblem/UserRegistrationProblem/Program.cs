@@ -13,7 +13,8 @@ namespace UserRegistrationProblem
             while (flag == "Y" || flag == "y")
             {
                 Console.WriteLine("Welcome To User Registration Problems");
-                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1\n6.Password Rule2");
+                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1\n6.Password Rule2" +
+                    "\n7.Password Rule3");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -60,6 +61,13 @@ namespace UserRegistrationProblem
                         bool valid6Test3 = passWordRule2.validatePassword2("abcd");
                         Console.WriteLine("{0} {1} {2}", (valid6Test1) ? "Valid" : "Invalid", (valid6Test2) ? "Valid" : "Invalid", (valid6Test3) ? "Valid" : "Invalid");
                         break;
+                    case 7:
+                        PassWordRule3 passWordRule3 = new PassWordRule3();
+                        bool valid7Test1 = passWordRule3.validatePassword3("abcdfghihgE1");
+                        bool valid7Test2 = passWordRule3.validatePassword3("15678");
+                        bool valid7Test3 = passWordRule3.validatePassword3("Abccdabcd");
+                        Console.WriteLine("{0} {1} {2}", (valid7Test1) ? "Valid" : "Invalid", (valid7Test2) ? "Valid" : "Invalid", (valid7Test3) ? "Valid" : "Invalid");
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -73,10 +81,9 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-6
-//Rule2
-//– Should have at least 1 Upper Case 
-//- NOTE – All rules must be passed
+//UC-7
+//Rule3
+//– Should have at least 1 numeric number in the password - NOTE – All rules must be passed
 
 //Result
 //Welcome To User Registration Problems
@@ -86,6 +93,7 @@ namespace UserRegistrationProblem
 //4.Mobile Number
 //5.Password Rule1
 //6.Password Rule2
+//7.Password Rule3
 //Enter Your Option
-//6
+//7
 //Valid Invalid Invalid

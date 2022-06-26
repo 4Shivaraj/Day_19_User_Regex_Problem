@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace UserRegistrationProblem
 {
-    class PassWordRule2
+    class PassWordRule3
     {
-        public static string Regex_Password = "(?=.*[0-9])(?=.[A-Za-z]{7,})";
+        public static string Regex_Password = (@"^[A-Za-z]{8,}[A-Z]{1,}[0-9]{1,}$");
 
-        public bool validatePassword2(string password)
+        public bool validatePassword3(string password)
         {
             return Regex.IsMatch(password, Regex_Password);
         }
