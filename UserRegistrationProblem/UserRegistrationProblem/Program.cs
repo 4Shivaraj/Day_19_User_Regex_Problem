@@ -13,7 +13,7 @@ namespace UserRegistrationProblem
             while (flag == "Y" || flag == "y")
             {
                 Console.WriteLine("Welcome To User Registration Problems");
-                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1");
+                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1\n6.Password Rule2");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -53,6 +53,13 @@ namespace UserRegistrationProblem
                         bool valid5Test3 = passWordRule1.validatePassword("123abced12");
                         Console.WriteLine("{0} {1} {2}", (valid5Test1) ? "Valid" : "Invalid", (valid5Test2) ? "Valid" : "Invalid", (valid5Test3) ? "Valid" : "Invalid");
                         break;
+                    case 6:
+                        PassWordRule2 passWordRule2 = new PassWordRule2();
+                        bool valid6Test1 = passWordRule2.validatePassword2("A123abcd");
+                        bool valid6Test2 = passWordRule2.validatePassword2("12345678");
+                        bool valid6Test3 = passWordRule2.validatePassword2("abcd");
+                        Console.WriteLine("{0} {1} {2}", (valid6Test1) ? "Valid" : "Invalid", (valid6Test2) ? "Valid" : "Invalid", (valid6Test3) ? "Valid" : "Invalid");
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -66,10 +73,9 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-5
-//As a User need to follow pre-defined Password rules.
-//Rule1
-//– minimum 8 Characters 
+//UC-6
+//Rule2
+//– Should have at least 1 Upper Case 
 //- NOTE – All rules must be passed
 
 //Result
@@ -79,6 +85,7 @@ namespace UserRegistrationProblem
 //3.Email
 //4.Mobile Number
 //5.Password Rule1
+//6.Password Rule2
 //Enter Your Option
-//5
-//Valid Invalid Valid
+//6
+//Valid Invalid Invalid
