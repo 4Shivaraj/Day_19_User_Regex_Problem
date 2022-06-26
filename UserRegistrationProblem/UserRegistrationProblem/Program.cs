@@ -14,7 +14,7 @@ namespace UserRegistrationProblem
             {
                 Console.WriteLine("Welcome To User Registration Problems");
                 Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1\n6.Password Rule2" +
-                    "\n7.Password Rule3");
+                    "\n7.Password Rule3\n8.Password Rule4");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -68,6 +68,13 @@ namespace UserRegistrationProblem
                         bool valid7Test3 = passWordRule3.validatePassword3("Abccdabcd");
                         Console.WriteLine("{0} {1} {2}", (valid7Test1) ? "Valid" : "Invalid", (valid7Test2) ? "Valid" : "Invalid", (valid7Test3) ? "Valid" : "Invalid");
                         break;
+                    case 8:
+                        PassWordRule4 passWordRule4 = new PassWordRule4();
+                        bool valid8Test1 = passWordRule4.validatePassword4("abc@12356");
+                        bool valid8Test2 = passWordRule4.validatePassword4("abcdfghihgE1@");
+                        bool valid8Test3 = passWordRule4.validatePassword4("123abcd");
+                        Console.WriteLine("{0} {1} {2}", (valid8Test1) ? "Valid" : "Invalid", (valid8Test2) ? "Valid" : "Invalid", (valid8Test3) ? "Valid" : "Invalid");
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -81,9 +88,10 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-7
-//Rule3
-//– Should have at least 1 numeric number in the password - NOTE – All rules must be passed
+//UC-8
+//Rule4 
+//– Has exactly 1 Special Character
+//- NOTE – All rules must be passed
 
 //Result
 //Welcome To User Registration Problems
@@ -94,6 +102,7 @@ namespace UserRegistrationProblem
 //5.Password Rule1
 //6.Password Rule2
 //7.Password Rule3
+//8.Password Rule4
 //Enter Your Option
-//7
-//Valid Invalid Invalid
+//8
+//Invalid Valid Invalid
