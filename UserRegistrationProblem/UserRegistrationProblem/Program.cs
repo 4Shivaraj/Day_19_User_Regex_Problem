@@ -21,3 +21,10 @@ namespace UserRegistrationProblem
         }
     }
 }
+//UC-1
+//As a User need to enter a valid First Name
+//- First name starts with Cap and has minimum 3 characters
+
+//Result
+//Welcome To User Registration Problems
+//Valid Invalid Invalid
