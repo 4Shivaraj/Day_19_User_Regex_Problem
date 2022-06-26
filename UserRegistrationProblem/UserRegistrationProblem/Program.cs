@@ -13,7 +13,7 @@ namespace UserRegistrationProblem
             while (flag == "Y" || flag == "y")
             {
                 Console.WriteLine("Welcome To User Registration Problems");
-                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number");
+                Console.WriteLine("1.First Name\n2.Last Name\n3.Email\n4.Mobile Number\n5.Password Rule1");
                 Console.WriteLine("Enter Your Option");
                 int num = Convert.ToInt32(Console.ReadLine());
                 switch (num)
@@ -46,6 +46,13 @@ namespace UserRegistrationProblem
                         bool valid4Test3 = validMobileNumber.validateMobileNumber("123abcd");
                         Console.WriteLine("{0} {1} {2}", (valid4Test1) ? "Valid" : "Invalid", (valid4Test2) ? "Valid" : "Invalid", (valid4Test3) ? "Valid" : "Invalid");
                         break;
+                    case 5:
+                        PassWordRule1 passWordRule1 = new PassWordRule1();
+                        bool valid5Test1 = passWordRule1.validatePassword("1234pass");
+                        bool valid5Test2 = passWordRule1.validatePassword("123ab");
+                        bool valid5Test3 = passWordRule1.validatePassword("123abced12");
+                        Console.WriteLine("{0} {1} {2}", (valid5Test1) ? "Valid" : "Invalid", (valid5Test2) ? "Valid" : "Invalid", (valid5Test3) ? "Valid" : "Invalid");
+                        break;
                     default:
                         Console.WriteLine("-------Enter the valid option---");
                         break;
@@ -59,9 +66,11 @@ namespace UserRegistrationProblem
 }
 
 
-//UC-4
-//As a User need tobfollow pre-defined
-//Mobile Format - E.g. 91 9919819801 - Country code follow by space and 10 digit number
+//UC-5
+//As a User need to follow pre-defined Password rules.
+//Rule1
+//– minimum 8 Characters 
+//- NOTE – All rules must be passed
 
 //Result
 //Welcome To User Registration Problems
@@ -69,6 +78,7 @@ namespace UserRegistrationProblem
 //2.Last Name
 //3.Email
 //4.Mobile Number
+//5.Password Rule1
 //Enter Your Option
-//4
-//Valid Invalid Invalid
+//5
+//Valid Invalid Valid
