@@ -6,24 +6,18 @@ namespace RegExPatterns
 {
     public class UserRegCustomException : Exception
     {
-        public string message;
-        public UserRegCustomException(string message)
-        {
-            this.message = message;
-        }
+        ExceptionType type;
         public enum ExceptionType
         {
-            NULL_MESSAGE,
-            EMPTY_MESSAGE,
-            NO_SUCH_FIELD,
-            NO_SUCH_METHOD,
-            NO_SUCH_CLASS,
-            OBJECT_CREATION_ISSUE
+            ENTERED_EMPTY,
+            ENTERED_LESSTHAN_MINIMUM_LENGTH,
+            ENTERED_NUMBER,
+            ENTERED_LOWERCASE,
+            ENTERED_SPECIAL_CHARACTER,
         }
-        private readonly ExceptionType type;
-        public UserRegCustomException(ExceptionType Type, String message) : base(message)
+        public UserRegCustomException(ExceptionType type, string message) : base(message)
         {
-            this.type = Type;
+            this.type = type;
         }
     }
 }

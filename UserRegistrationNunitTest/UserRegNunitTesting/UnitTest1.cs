@@ -1,225 +1,127 @@
-
-using RegExPatterns;
-using System.Security.Cryptography.X509Certificates;
+using NUnit.Framework;
 
 namespace RegExPatterns
 {
-
-    public class UnitTest1
+    public class Tests
     {
-        Patterns patterns;
+
+        UserRegistrationTestLambda userRegistration;
         [SetUp]
         public void Setup()
         {
-            patterns = new Patterns();
+            userRegistration = new UserRegistrationTestLambda();
         }
 
-        [Test]
+        /// <summary>
+        /// Throw Custom Exception for Invalid FirstName
+        /// </summary>
+        [TestCase("Shivaraj")]
+        [TestCase("Sh")]
+        public void Given_FirstName_Expecting_ThrowCustomException(string firstName)
+        {
 
-        public void HappyTest()
-        {
-            string message = null;
-            patterns = new Patterns();
-            bool check1 = patterns.ValidateFirstName("Shivaraj");
-            bool check2 = patterns.ValidateLastName("Deepak");
-            bool check3 = patterns.ValidateEmail("4shivraj.gowda@gmail.com");
-            bool check4 = patterns.ValidatePhone("91 8618199771");
-            bool check5 = patterns.ValidatePassword("Shiva123@!");
-            if (check1 == true && check2 == true && check3 == true && check4 == true && check5 == true)
-            {
-                message = "Validation Successful";
-            }
-            Assert.AreEqual("Validation Successful", message);
-        }
-        [Test]
-        public void SadTest()
-        {
-            string message = null;
-            patterns = new Patterns();
-            bool check1 = patterns.ValidateFirstName("shivaraj");
-            bool check2 = patterns.ValidateLastName("deepak");
-            bool check3 = patterns.ValidateEmail("4shivraj.gowda.gmail.com");
-            bool check4 = patterns.ValidatePhone("8618199771");
-            bool check5 = patterns.ValidatePassword("raf@24");
-            if (check1 == true && check2 == true && check3 == true && check4 == true && check5 == true)
-            {
-                message = "Validation Successful";
-            }
-            else
-            {
-                message = "Validation Unsuccessful";
-            }
-            Assert.AreEqual("Validation Unsuccessful", message);
-        }
-        [Test]
-        public void MultipleMail()
-        {
-            string message = null;
-            patterns = new Patterns();
-            bool check1 = patterns.ValidateEmail("abc@yahoo.com");
-            bool check2 = patterns.ValidateEmail("abc-100@yahoo.com");
-            bool check3 = patterns.ValidateEmail("abc.100@yahoo.com");
-            if (check1 == true && check2 == true && check3 == true)
-            {
-                message = "Email Validation Successful";
-            }
-            Assert.AreEqual("Email Validation Successful", message);
-        }
-        [Test]
-        public void given_empty_first_name_should_return_this_exception()
-        {
             try
             {
-                patterns = new Patterns();
-                string message = string.Empty;
-                bool check = patterns.ValidateFirstName(message);
-
+                string actual = userRegistration.firstNameLambda(firstName);
             }
-            catch (UserRegCustomException userException)
+            catch (UserRegCustomException exception)
             {
-                Assert.AreEqual("Fist Name cannot be empty", userException.message);
+                Assert.AreEqual("FirstName should contains atleast three characters", exception.Message);
             }
-
         }
-        public void given_null_first_name_should_return_this_exception()
+
+        /// <summary>
+        /// Throw Custom Exception for Invalid LastName
+        /// </summary>
+        [TestCase("Gowda")]
+        [TestCase("Go")]
+        public void Given_LastName_Expecting_ThrowCustomException(string lastName)
         {
+
             try
             {
-                patterns = new Patterns();
-                string message = null;
-                bool check = patterns.ValidateFirstName(message);
-
+                string actual = userRegistration.lastNameLambda(lastName);
             }
-            catch (UserRegCustomException userException)
+            catch (UserRegCustomException exception)
             {
-                Assert.AreEqual("Fist Name cannot be null", userException.message);
+                Assert.AreEqual("LastName should contains atleast three characters", exception.Message);
             }
-
         }
-        [Test]
-        public void given_empty_last_name_should_return_this_exception()
+        /// <summary>
+        /// Throw Custom Exception for Invalid Email
+        /// </summary>
+        [TestCase("abc@yahoo.com")]
+        [TestCase("abc-100@yahoo.com,")]
+        [TestCase("abc.100@yahoo.com")]
+        [TestCase("abc111@abc.com,")]
+        [TestCase("abc-100@abc.net,")]
+        [TestCase("abc.100@abc.com.au")]
+        [TestCase("abc@1.com,")]
+        [TestCase("abc@gmail.com.com")]
+        [TestCase("abc+100@gmail.com")]
+        [TestCase("abc")]
+        [TestCase("abc@.com.my")]
+        [TestCase("abc123@gmail.a")]
+        [TestCase("abc123@.com")]
+        [TestCase("abc@.com.com")]
+        [TestCase(".abc@abc.com")]
+        [TestCase("abc()*@gmail.com")]
+        [TestCase("abc@%*.com")]
+        [TestCase("abc..2002@gmail.com")]
+        [TestCase("abc.@gmail.com")]
+        [TestCase("abc@abc@gmail.com")]
+        [TestCase("abc@gmail.com.1a")]
+        [TestCase("abc@gmail.com.aa.au")]
+        public void Given_Email_Expecting_ThrowCustomException(string email)
         {
+
             try
             {
-                patterns = new Patterns();
-                string message = string.Empty;
-                bool check = patterns.ValidateLastName(message);
-
+                string actual = userRegistration.emailLambda(email);
             }
-            catch (UserRegCustomException userException)
+            catch (UserRegCustomException exception)
             {
-                Assert.AreEqual("Last Name cannot be empty", userException.message);
+                Assert.AreEqual("Email should contains special characters", exception.Message);
             }
-
         }
-        public void given_null_last_name_should_return_this_exception()
+
+        /// <summary>
+        /// Throw Custom Exception for Invalid MobileNumber
+        /// </summary>
+        [TestCase("91 8618199771")]
+        [TestCase("")]
+        public void Given_MobileNumber_Expecting_ThrowCustomException(string mobileNumber)
         {
+
             try
             {
-                patterns = new Patterns();
-                string message = null;
-                bool check = patterns.ValidateLastName(message);
-
+                string actual = userRegistration.mobileNumberLambda(mobileNumber);
             }
-            catch (UserRegCustomException userException)
+            catch (UserRegCustomException exception)
             {
-                Assert.AreEqual("Last Name cannot be null", userException.message);
+                Assert.AreEqual("MobileNumber should not be empty", exception.Message);
             }
-
         }
-        [Test]
-        public void given_empty_email_should_return_this_exception()
+
+        /// <summary>
+        /// Throw Custom Exception for Invalid Password
+        /// </summary>
+        [TestCase("Shiva123@!")]
+        [TestCase("")]
+        public void Given_Password_Expecting_ThrowCustomException(string password)
         {
+
             try
             {
-                patterns = new Patterns();
-                string message = string.Empty;
-                bool check = patterns.ValidateEmail(message);
-
+                string actual = userRegistration.passwordLambda(password);
             }
-            catch (UserRegCustomException userException)
+            catch (UserRegCustomException exception)
             {
-                Assert.AreEqual("Email cannot be empty", userException.message);
+                Assert.AreEqual("Password should not be empty", exception.Message);
             }
-
         }
-        public void given_null_email_should_return_this_exception()
-        {
-            try
-            {
-                patterns = new Patterns();
-                string message = null;
-                bool check = patterns.ValidateEmail(message);
 
-            }
-            catch (UserRegCustomException userException)
-            {
-                Assert.AreEqual("Email cannot be null", userException.message);
-            }
 
-        }
-        [Test]
-        public void given_empty_phone_should_return_this_exception()
-        {
-            try
-            {
-                patterns = new Patterns();
-                string message = string.Empty;
-                bool check = patterns.ValidatePhone(message);
-
-            }
-            catch (UserRegCustomException userException)
-            {
-                Assert.AreEqual("Phone number cannot be empty", userException.message);
-            }
-
-        }
-        public void given_null_phone_should_return_this_exception()
-        {
-            try
-            {
-                patterns = new Patterns();
-                string message = null;
-                bool check = patterns.ValidatePhone(message);
-
-            }
-            catch (UserRegCustomException userException)
-            {
-                Assert.AreEqual("Phone number cannot be null", userException.message);
-            }
-
-        }
-        [Test]
-        public void given_empty_password_should_return_this_exception()
-        {
-            try
-            {
-                patterns = new Patterns();
-                string message = string.Empty;
-                bool check = patterns.ValidatePassword(message);
-
-            }
-            catch (UserRegCustomException userException)
-            {
-                Assert.AreEqual("Password cannot be empty", userException.message);
-            }
-
-        }
-        public void given_null_password_should_return_this_exception()
-        {
-            try
-            {
-                patterns = new Patterns();
-                string message = null;
-                bool check = patterns.ValidatePassword(message);
-
-            }
-            catch (UserRegCustomException userException)
-            {
-                Assert.AreEqual("Password cannot be null", userException.message);
-            }
-
-        }
 
     }
 }
