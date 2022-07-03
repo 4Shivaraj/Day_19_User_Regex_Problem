@@ -83,8 +83,6 @@ namespace NUnitTestProject
                 Assert.AreEqual("Email should contains special characters", exception.Message);
             }
         }
-
-
         /// TC-4 Throw Custom Exception for Invalid MobileNumber
 
         [TestCase("91 8618199771")]
@@ -102,7 +100,7 @@ namespace NUnitTestProject
             }
         }
 
- 
+
         /// TC-5 Throw Custom Exception for Invalid Password
 
         [TestCase("Shiva123@!")]
@@ -119,8 +117,5 @@ namespace NUnitTestProject
                 Assert.AreEqual("Password should not be empty", exception.Message);
             }
         }
-
-
-
     }
 }

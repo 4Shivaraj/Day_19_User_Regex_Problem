@@ -150,7 +150,7 @@ namespace UserRegistrationLambda
         /// <summary>
         /// MobileNumber Custom Exception
         /// </summary>
- 
+
         public string mobileNumberLambda(string patternMobileNumber)
         {
             bool result = mobileNumber(patternMobileNumber);
