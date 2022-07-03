@@ -2,7 +2,7 @@
 using RegExPatterns;
 using System.Security.Cryptography.X509Certificates;
 
-namespace UserRegistrationTest
+namespace RegExPatterns
 {
 
     public class UnitTest1
@@ -65,5 +65,161 @@ namespace UserRegistrationTest
             }
             Assert.AreEqual("Email Validation Successful", message);
         }
+        [Test]
+        public void given_empty_first_name_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = string.Empty;
+                bool check = patterns.ValidateFirstName(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Fist Name cannot be empty", userException.message);
+            }
+
+        }
+        public void given_null_first_name_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = null;
+                bool check = patterns.ValidateFirstName(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Fist Name cannot be null", userException.message);
+            }
+
+        }
+        [Test]
+        public void given_empty_last_name_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = string.Empty;
+                bool check = patterns.ValidateLastName(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Last Name cannot be empty", userException.message);
+            }
+
+        }
+        public void given_null_last_name_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = null;
+                bool check = patterns.ValidateLastName(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Last Name cannot be null", userException.message);
+            }
+
+        }
+        [Test]
+        public void given_empty_email_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = string.Empty;
+                bool check = patterns.ValidateEmail(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Email cannot be empty", userException.message);
+            }
+
+        }
+        public void given_null_email_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = null;
+                bool check = patterns.ValidateEmail(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Email cannot be null", userException.message);
+            }
+
+        }
+        [Test]
+        public void given_empty_phone_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = string.Empty;
+                bool check = patterns.ValidatePhone(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Phone number cannot be empty", userException.message);
+            }
+
+        }
+        public void given_null_phone_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = null;
+                bool check = patterns.ValidatePhone(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Phone number cannot be null", userException.message);
+            }
+
+        }
+        [Test]
+        public void given_empty_password_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = string.Empty;
+                bool check = patterns.ValidatePassword(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Password cannot be empty", userException.message);
+            }
+
+        }
+        public void given_null_password_should_return_this_exception()
+        {
+            try
+            {
+                patterns = new Patterns();
+                string message = null;
+                bool check = patterns.ValidatePassword(message);
+
+            }
+            catch (UserRegCustomException userException)
+            {
+                Assert.AreEqual("Password cannot be null", userException.message);
+            }
+
+        }
+
     }
 }

@@ -79,9 +79,10 @@ namespace RegExPatterns
     }
 }
 
-//UC-11
+//UC-12
 
-//Write JUnit Parameterised Test to validate multiple entry for the Email Address.
+// Refactor the Code to throw custom exceptions in case of Invalid User Details 
+//   - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name, Email, Mobile, and Password
 
 //Result
 //Welcome to User Registration!
@@ -102,10 +103,10 @@ namespace RegExPatterns
 //Password: Shiva123@!
 
 //N Unit Test Result
-//UserRegistrationTest
-//  Tests in group: 3
+//UserRegNunitTesting
+//  Tests in group: 8
 
-//  Total Duration: 25 ms
+//  Total Duration: 24 ms
 
 //Outcomes
-//   3 Passed
+//   8 Passed
