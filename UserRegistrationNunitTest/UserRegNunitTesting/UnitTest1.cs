@@ -1,121 +1,55 @@
-using NUnit.Framework;
-using UserRegistrationLambda;
 
-namespace NUnitTestProject
+using RegExPatterns;
+using System.Security.Cryptography.X509Certificates;
+
+namespace UserRegistrationTest
 {
-    public class Tests
+    
+    public class UnitTest1
     {
-
-        UserRegistrationTestLambda userRegistration;
+        Patterns patterns;
         [SetUp]
         public void Setup()
         {
-            userRegistration = new UserRegistrationTestLambda();
+            patterns = new Patterns();
         }
-
-        /// TC-1 Throw Custom Exception for Invalid FirstName
-
-        [TestCase("Shivaraj")]
-        [TestCase("Sh")]
-        public void Given_FirstName_Expecting_ThrowCustomException(string firstName)
+        
+        [Test]
+        
+        public void HappyTest()
         {
-
-            try
+            string message = null;
+            patterns = new Patterns();
+            bool check1 = patterns.ValidateFirstName("Shivaraj");
+            bool check2 = patterns.ValidateLastName("Deepak");
+            bool check3 = patterns.ValidateEmail("4shivraj.gowda@gmail.com");
+            bool check4 = patterns.ValidatePhone("91 8618199771");
+            bool check5 = patterns.ValidatePassword("Shiva123@!");
+            if (check1 == true && check2 == true && check3 == true && check4 == true && check5 == true)
             {
-                string actual = userRegistration.firstNameLambda(firstName);
+                message = "Validation Successful";
             }
-            catch (UserRegistrationTestCustomException exception)
-            {
-                Assert.AreEqual("FirstName should contains atleast three characters", exception.Message);
-            }
+            Assert.AreEqual("Validation Successful", message);
         }
-
-        /// TC-2 Throw Custom Exception for Invalid LastName
-
-        [TestCase("Gowda")]
-        [TestCase("Go")]
-        public void Given_LastName_Expecting_ThrowCustomException(string lastName)
+        [Test]
+        public void SadTest()
         {
-
-            try
+            string message = null;
+            patterns = new Patterns();
+            bool check1 = patterns.ValidateFirstName("shivaraj");
+            bool check2 = patterns.ValidateLastName("deepak");
+            bool check3 = patterns.ValidateEmail("4shivraj.gowda.gmail.com");
+            bool check4 = patterns.ValidatePhone("8618199771");
+            bool check5 = patterns.ValidatePassword("raf@24");
+            if (check1 == true && check2 == true && check3 == true && check4 == true && check5 == true)
             {
-                string actual = userRegistration.lastNameLambda(lastName);
+                message = "Validation Successful";
             }
-            catch (UserRegistrationTestCustomException exception)
+            else
             {
-                Assert.AreEqual("LastName should contains atleast three characters", exception.Message);
+                message = "Validation Unsuccessful";
             }
-        }
-
-        /// TC-3 Throw Custom Exception for Invalid Email
-
-        [TestCase("abc@yahoo.com")]
-        [TestCase("abc-100@yahoo.com,")]
-        [TestCase("abc.100@yahoo.com")]
-        [TestCase("abc111@abc.com,")]
-        [TestCase("abc-100@abc.net,")]
-        [TestCase("abc.100@abc.com.au")]
-        [TestCase("abc@1.com,")]
-        [TestCase("abc@gmail.com.com")]
-        [TestCase("abc+100@gmail.com")]
-        [TestCase("abc")]
-        [TestCase("abc@.com.my")]
-        [TestCase("abc123@gmail.a")]
-        [TestCase("abc123@.com")]
-        [TestCase("abc@.com.com")]
-        [TestCase(".abc@abc.com")]
-        [TestCase("abc()*@gmail.com")]
-        [TestCase("abc@%*.com")]
-        [TestCase("abc..2002@gmail.com")]
-        [TestCase("abc.@gmail.com")]
-        [TestCase("abc@abc@gmail.com")]
-        [TestCase("abc@gmail.com.1a")]
-        [TestCase("abc@gmail.com.aa.au")]
-        public void Given_Email_Expecting_ThrowCustomException(string email)
-        {
-
-            try
-            {
-                string actual = userRegistration.emailLambda(email);
-            }
-            catch (UserRegistrationTestCustomException exception)
-            {
-                Assert.AreEqual("Email should contains special characters", exception.Message);
-            }
-        }
-        /// TC-4 Throw Custom Exception for Invalid MobileNumber
-
-        [TestCase("91 8618199771")]
-        [TestCase("")]
-        public void Given_MobileNumber_Expecting_ThrowCustomException(string mobileNumber)
-        {
-
-            try
-            {
-                string actual = userRegistration.mobileNumberLambda(mobileNumber);
-            }
-            catch (UserRegistrationTestCustomException exception)
-            {
-                Assert.AreEqual("MobileNumber should not be empty", exception.Message);
-            }
-        }
-
-
-        /// TC-5 Throw Custom Exception for Invalid Password
-
-        [TestCase("Shiva123@!")]
-        [TestCase("")]
-        public void Given_Password_Expecting_ThrowCustomException(string password)
-        {
-
-            try
-            {
-                string actual = userRegistration.passwordLambda(password);
-            }
-            catch (UserRegistrationTestCustomException exception)
-            {
-                Assert.AreEqual("Password should not be empty", exception.Message);
-            }
+            Assert.AreEqual("Validation Unsuccessful", message);
         }
     }
 }
