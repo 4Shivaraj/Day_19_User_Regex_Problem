@@ -79,12 +79,9 @@ namespace RegExPatterns
     }
 }
 
-//UC-10
+//UC-11
 
-//Write JUnit Test to validate the User Entry for First Name, Last Name, Email, Mobile, and Password.
-//- Write Junit Test for Happy as well as Sad test case.
-//- Happy Test Case validates the Entry Successfully
-//- Sad Test Cases fails the Entry
+//Write JUnit Parameterised Test to validate multiple entry for the Email Address.
 
 //Result
 //Welcome to User Registration!
@@ -106,9 +103,9 @@ namespace RegExPatterns
 
 //N Unit Test Result
 //UserRegistrationTest
-//  Tests in group: 2
+//  Tests in group: 3
 
 //  Total Duration: 25 ms
 
 //Outcomes
-//   2 Passed
+//   3 Passed

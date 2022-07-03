@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace UserRegistrationTest
 {
-    
+
     public class UnitTest1
     {
         Patterns patterns;
@@ -13,9 +13,9 @@ namespace UserRegistrationTest
         {
             patterns = new Patterns();
         }
-        
+
         [Test]
-        
+
         public void HappyTest()
         {
             string message = null;
@@ -50,6 +50,20 @@ namespace UserRegistrationTest
                 message = "Validation Unsuccessful";
             }
             Assert.AreEqual("Validation Unsuccessful", message);
+        }
+        [Test]
+        public void MultipleMail()
+        {
+            string message = null;
+            patterns = new Patterns();
+            bool check1 = patterns.ValidateEmail("abc@yahoo.com");
+            bool check2 = patterns.ValidateEmail("abc-100@yahoo.com");
+            bool check3 = patterns.ValidateEmail("abc.100@yahoo.com");
+            if (check1 == true && check2 == true && check3 == true)
+            {
+                message = "Email Validation Successful";
+            }
+            Assert.AreEqual("Email Validation Successful", message);
         }
     }
 }
