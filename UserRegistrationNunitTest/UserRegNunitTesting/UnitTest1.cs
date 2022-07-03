@@ -1,110 +1,126 @@
-namespace UserRegistrationNunitTest
+using NUnit.Framework;
+using UserRegistrationLambda;
+
+namespace NUnitTestProject
 {
     public class Tests
     {
-        UserRegistrationDetails user;
+
+        UserRegistrationTestLambda userRegistration;
         [SetUp]
         public void Setup()
         {
-            user = new UserRegistrationDetails();
+            userRegistration = new UserRegistrationTestLambda();
         }
 
-        [Test]
-        public void FirstName()
+        /// TC-1 Throw Custom Exception for Invalid FirstName
+
+        [TestCase("Shivaraj")]
+        [TestCase("Sh")]
+        public void Given_FirstName_Expecting_ThrowCustomException(string firstName)
         {
-            // Arrange 
-            bool expected = true;
-            string name = "Shivaraj";
-            UserRegistrationDetails user = new UserRegistrationDetails();
 
-            // Act
-            bool result = user.ValidateFirstName(name);
-
-            // Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                string actual = userRegistration.firstNameLambda(firstName);
+            }
+            catch (UserRegistrationTestCustomException exception)
+            {
+                Assert.AreEqual("FirstName should contains atleast three characters", exception.Message);
+            }
         }
 
+        /// TC-2 Throw Custom Exception for Invalid LastName
 
-        [Test]
-        public void LastName()
+        [TestCase("Gowda")]
+        [TestCase("Go")]
+        public void Given_LastName_Expecting_ThrowCustomException(string lastName)
         {
-            // Arrange 
-            bool expected = true;
-            string name = "Gowda";
-            UserRegistrationDetails user = new UserRegistrationDetails();
 
-            // Act
-            bool result = user.ValidateLastName(name);
-
-            // Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                string actual = userRegistration.lastNameLambda(lastName);
+            }
+            catch (UserRegistrationTestCustomException exception)
+            {
+                Assert.AreEqual("LastName should contains atleast three characters", exception.Message);
+            }
         }
 
-        [Test]
-        public void Email()
+        /// TC-3 Throw Custom Exception for Invalid Email
+
+        [TestCase("abc@yahoo.com")]
+        [TestCase("abc-100@yahoo.com,")]
+        [TestCase("abc.100@yahoo.com")]
+        [TestCase("abc111@abc.com,")]
+        [TestCase("abc-100@abc.net,")]
+        [TestCase("abc.100@abc.com.au")]
+        [TestCase("abc@1.com,")]
+        [TestCase("abc@gmail.com.com")]
+        [TestCase("abc+100@gmail.com")]
+        [TestCase("abc")]
+        [TestCase("abc@.com.my")]
+        [TestCase("abc123@gmail.a")]
+        [TestCase("abc123@.com")]
+        [TestCase("abc@.com.com")]
+        [TestCase(".abc@abc.com")]
+        [TestCase("abc()*@gmail.com")]
+        [TestCase("abc@%*.com")]
+        [TestCase("abc..2002@gmail.com")]
+        [TestCase("abc.@gmail.com")]
+        [TestCase("abc@abc@gmail.com")]
+        [TestCase("abc@gmail.com.1a")]
+        [TestCase("abc@gmail.com.aa.au")]
+        public void Given_Email_Expecting_ThrowCustomException(string email)
         {
-            // Arrange 
-            bool expected = true;
-            string email = "4shivaraj.gowda@gmail.com";
-            UserRegistrationDetails user = new UserRegistrationDetails();
 
-            // Act
-            bool result = user.ValidateEmail(email);
-
-            // Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                string actual = userRegistration.emailLambda(email);
+            }
+            catch (UserRegistrationTestCustomException exception)
+            {
+                Assert.AreEqual("Email should contains special characters", exception.Message);
+            }
         }
 
-        [Test]
-        public void MobileNumber()
+
+        /// TC-4 Throw Custom Exception for Invalid MobileNumber
+
+        [TestCase("91 8618199771")]
+        [TestCase("")]
+        public void Given_MobileNumber_Expecting_ThrowCustomException(string mobileNumber)
         {
-            // Arrange 
-            bool expected = true;
-            string mobile = "91 8618199771";
-            UserRegistrationDetails user = new UserRegistrationDetails();
 
-            // Act
-            bool result = user.ValidateMobileNumber(mobile);
-
-            // Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                string actual = userRegistration.mobileNumberLambda(mobileNumber);
+            }
+            catch (UserRegistrationTestCustomException exception)
+            {
+                Assert.AreEqual("MobileNumber should not be empty", exception.Message);
+            }
         }
 
-        [Test]
-        public void Password()
+ 
+        /// TC-5 Throw Custom Exception for Invalid Password
+
+        [TestCase("Shiva123@!")]
+        [TestCase("")]
+        public void Given_Password_Expecting_ThrowCustomException(string password)
         {
-            // Arrange 
-            bool expected = true;
-            string password = "Shiva123@!";
-            UserRegistrationDetails user = new UserRegistrationDetails();
 
-            // Act
-            bool result = user.ValidatePassword(password);
+            try
+            {
+                string actual = userRegistration.passwordLambda(password);
+            }
+            catch (UserRegistrationTestCustomException exception)
+            {
+                Assert.AreEqual("Password should not be empty", exception.Message);
+            }
+        }
 
-            // Assert
-            Assert.AreEqual(expected, result);
-        }
-        [Test]
-        public void EmailTest()
-        {
-            string EMail1 = "abc@gamil.com";
-            string EMail2 = "abc.bcd@gmail.com";
-            string EMail3 = "abc.bdc100@gmail.com";
-            string EMail4 = "abc.ghj111@gmail.com";
-            string EMail5 = "abc.efgh@gmail.com";
-            bool result1 = user.ValidateEmail(EMail1);
-            bool result2 = user.ValidateEmail(EMail2);
-            bool result3 = user.ValidateEmail(EMail3);
-            bool result4 = user.ValidateEmail(EMail4);
-            bool result5 = user.ValidateEmail(EMail5);
-            Assert.AreEqual(true, result1);
-            Assert.AreEqual(true, result2);
-            Assert.AreEqual(true, result3);
-            Assert.AreEqual(true, result4);
-            Assert.AreEqual(true, result5);
-        }
 
 
     }
-
 }

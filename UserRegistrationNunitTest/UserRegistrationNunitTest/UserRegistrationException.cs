@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace UserRegistrationNunitTest
+namespace UserRegistrationLambda
 {
-    public class UserRegistrationException : Exception
+    public class UserRegistrationTestCustomException : Exception
     {
+        ExceptionType type;
         public enum ExceptionType
         {
-            Empty_Message,
-            NULL_Message
+            ENTERED_EMPTY,
+            ENTERED_LESSTHAN_MINIMUM_LENGTH,
+            ENTERED_NUMBER,
+            ENTERED_LOWERCASE,
+            ENTERED_SPECIAL_CHARACTER,
         }
-        private readonly ExceptionType type;
-
-        public UserRegistrationException(ExceptionType Type, String message) : base(message)
+        public UserRegistrationTestCustomException(ExceptionType type, string message) : base(message)
         {
-            this.type = Type;
+            this.type = type;
         }
     }
-
 }
