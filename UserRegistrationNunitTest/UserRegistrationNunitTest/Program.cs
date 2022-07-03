@@ -53,13 +53,20 @@ namespace UserRegistrationNunitTest
                               (checkMobileNumber) ? "Mobile number is valid" : "Mobile number is invalid",
                               (checkPassword) ? "Password is valid" : "Password is invalid");
 
+            string EMail1 = "abc@gamil.com";
+            string EMail2 = "abc.bcd@gmail.com";
+            string EMail3 = "abc.bdc100@gmail.com";
+            string EMail4 = "abc.ghj111@gmail.com";
+            string EMail5 = "abc.efgh@gmail.com";
+
+            user.CheckMultipleEmail(EMail1, EMail2, EMail3, EMail4, EMail5);
+
         }
     }
 }
 
-//User Registration Problem
-
-// Exception Handling Results
+//UC_10
+//Write JUnit Parameterised Test to validate multiple entry for the Email Address.
 
 //Welcome To N unit testing and Exception handling For User Registration Problem
 
@@ -69,7 +76,7 @@ namespace UserRegistrationNunitTest
 //Last Name:     Gowda
 //Email:     4shivaraj.gowda @gmail.com
 //Mobile Number:     91 8618199771
-//Password:     abcdfghihgE1@
+//Password:     Shiva123@!
 
 //=====Result======
 
@@ -82,13 +89,11 @@ namespace UserRegistrationNunitTest
 //========================================//
 
 //N Unit Test Results
+//UserRegNunitTesting
+//  Tests in group: 6
 
-//UserRegistrationNunitTest
-//  Tests in group: 5
-
-//  Total Duration: 54 ms
+//  Total Duration: 46.6 sec
 
 //Outcomes
-//   5 Passed
-
+//   6 Passed
 //========================================//
